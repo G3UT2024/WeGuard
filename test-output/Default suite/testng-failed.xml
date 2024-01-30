@@ -8,6 +8,7 @@
           <include name="terminate"/>
           <include name="policyGroups"/>
           <include name="init"/>
+          <include name="policyRestrictions"/>
         </methods>
       </class> <!-- com.weguard.WeGuardUI.TestNGBase -->
     </classes>

@@ -68,6 +68,7 @@ public class Authenticator {
 	}
 
 	public void testLoginUsername(ExtentTest extentTest, Logger logger) {
+		
 		ExtentTest extentNode = extentTest.createNode("Login Username Test");
 
 		try {

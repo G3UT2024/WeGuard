@@ -53,8 +53,11 @@ public class TestNGBase {
 		driver = new ChromeDriver(options);
 
 		driver.manage().window().maximize();
+		
+		// setting max wait time for element locating
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+		// Initialize ExtentReports
 		extent = new ExtentReports();
 
         String timestamp = new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss").format(new Date());
@@ -95,20 +98,15 @@ public class TestNGBase {
 
 		PolicyGroupsPage policyGroupsTest = new PolicyGroupsPage(driver, extentTest, logger);
 
-	    policyGroupsTest.testKiosk();
-	    policyGroupsTest.testWorkManaged();
-		policyGroupsTest.testWorkProfile();
-		policyGroupsTest.testNPKiosk();
-		policyGroupsTest.testNPWorkManaged();
-		policyGroupsTest.testNPWorkProfile();	
+//	    policyGroupsTest.testKiosk();
+//	    policyGroupsTest.testWorkManaged();
+//		policyGroupsTest.testWorkProfile();
+//		policyGroupsTest.testNPKiosk();
+//		policyGroupsTest.testNPWorkManaged();
+//		policyGroupsTest.testNPWorkProfile();	
 		
-//	    policyGroupsTest.testDefaultCloning();
-		//policyGroupsTest.testCloneDeletion();
-		
-//		policyGroupsTest.KiosktestClone();
-//		policyGroupsTest.WMtestClone();
-//		policyGroupsTest.WPtestClone();
-//	    policyGroupsTest.NonplayKiosktestClone();
+	    policyGroupsTest.testDefaultCloning();
+	    policyGroupsTest.testCloneDeletion();
 		policyGroupsTest.testSearch();
 		
 		

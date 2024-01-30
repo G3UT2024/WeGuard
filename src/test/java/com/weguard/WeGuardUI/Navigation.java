@@ -8,11 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
  /* Description:
- * This is used for testing Navigation Links in Admin Console
+ * This is used for testing Navigation to the modules in Admin Console
  */
 
 public class Navigation {
@@ -28,7 +29,7 @@ public class Navigation {
 		WebElement navLinkEl = driver.findElement(selector);
 		
 		// wait for the nav link to be clickable
-        // wait.until(ExpectedConditions.elementToBeClickable(navLinkEl));
+        wait.until(ExpectedConditions.elementToBeClickable(navLinkEl));
 		
 		// click the nav link element
 		navLinkEl.click();
@@ -66,10 +67,34 @@ public class Navigation {
 		
 		
 		// Login
-//		Authenticator auth = new Authenticator(driver);
+		Authenticator auth = new Authenticator(driver);
 
 		try {
-//			auth.login();
+			driver.get(TestNGBase.BASE_URL + "#/login");
+			
+
+			WebElement usernameInput = driver.findElement(By.xpath("//input[contains(@placeholder, 'Email')]"));
+
+			//@FindBy(xpath = "//input[contains(@placeholder, 'Password')]")
+			WebElement passwordInput= driver.findElement(By.xpath ("//input[contains(@placeholder, 'Password')]"));
+
+		//	@FindBy(xpath = "//button[.//span[contains(text(), 'Submit')]]")
+			WebElement loginBtn = driver.findElement(By.xpath ( "//button[.//span[contains(text(), 'Submit')]]"));
+
+			//@FindBy(xpath = "//*[contains(@class, 'windows8')]")
+			WebElement loadingEl= driver.findElement(By.xpath ( "//*[contains(@class, 'windows8')]"));
+
+			usernameInput.sendKeys(TestNGBase.USERNAME);
+
+			passwordInput.sendKeys(TestNGBase.PASSWORD);
+
+			loginBtn.click();
+
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+			// wait for loading sign to disappear
+			wait.until(ExpectedConditions.invisibilityOf(loadingEl));
+			
 			System.out.println("Login Successful");
 		} catch (Exception e) {
 			System.out.println("Not able to login");
